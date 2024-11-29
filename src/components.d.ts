@@ -27,6 +27,7 @@ declare module 'vue' {
     IBiStar: typeof import('~icons/bi/star')['default']
     IBiStarFill: typeof import('~icons/bi/star-fill')['default']
     IBiSunFill: typeof import('~icons/bi/sun-fill')['default']
+    MissingSolutionComponent: typeof import('./components/MissingSolutionComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     V10: typeof import('./components/2023/V10.vue')['default']

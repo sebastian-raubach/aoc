@@ -52,7 +52,7 @@
     <v-form class="mb-5" @submit.prevent="handleInput">
       <v-textarea v-model="input" label="Task input" />
 
-      <v-btn color="primary" type="submit"><v-icon><IBiPlayFill /></v-icon> Run</v-btn>
+      <v-btn color="primary" :disabled="!componentExists" type="submit"><v-icon><IBiPlayFill /></v-icon> Run</v-btn>
     </v-form>
 
     <v-row>
@@ -76,12 +76,15 @@
       </v-col>
     </v-row>
 
-    <component
-      :is="currentDay"
-      v-if="parsedInput"
-      :input="parsedInput"
-      @on-finished="handleResult"
-    />
+    <template v-if="componentExists">
+      <component
+        :is="currentDay"
+        v-if="parsedInput"
+        :input="parsedInput"
+        @on-finished="handleResult"
+      />
+    </template>
+    <MissingSolutionComponent v-else />
   </v-container>
 </template>
 
@@ -90,6 +93,7 @@
   import { Day, solvedDays } from '@/plugins/days'
   // @ts-ignore
   import MarkdownIt from 'markdown-it'
+  import MissingSolutionComponent from '@/components/MissingSolutionComponent.vue'
 
   const markdownRenderer = new MarkdownIt({
     html: true,
@@ -108,6 +112,7 @@
   const partTwo = ref<string | undefined>()
   const showPartOne = ref<boolean>(false)
   const showPartTwo = ref<boolean>(false)
+  const componentExists = ref<boolean>(true)
 
   const actualDay: ComputedRef<Day | undefined> = computed(() => {
     if (year.value && day.value) {
@@ -137,9 +142,19 @@
     partTwo.value = pTwo
   }
 
+  const checkComponentExists = () => {
+    import(`@/components/${year.value}/D${day.value}.vue`)
+      .catch(() => {
+        componentExists.value = false
+      })
+  }
+
   const currentDay = computed(() => {
     // Load the component asynchronously based on year and day
-    return defineAsyncComponent(() => import(`@/components/${year.value}/D${day.value}.vue`))
+    return defineAsyncComponent({
+      loader: () => import(`@/components/${year.value}/D${day.value}.vue`),
+      errorComponent: MissingSolutionComponent,
+    })
   })
 
   const getDataFile = async () => {
@@ -155,6 +170,7 @@
 
   // When mounted, load the input file
   onMounted(() => {
+    checkComponentExists()
     getDataFile()
     getMarkdownFile()
   })
