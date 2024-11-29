@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="favicon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="2.5175505"
+     inkscape:cx="576.75109"
+     inkscape:cy="232.56733"
+     inkscape:window-width="3840"
+     inkscape:window-height="2054"
+     inkscape:window-x="4309"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="0.99999998"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="2"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect259"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,21.33802,0,1 @ F,0,0,1,0,21.33802,0,1 @ F,0,1,1,0,21.33802,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect175"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,21.33802,0,1 @ F,0,0,1,0,21.33802,0,1 @ F,0,1,1,0,21.33802,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect173"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,21.33802,0,1 @ F,0,0,1,0,21.33802,0,1 @ F,0,1,1,0,21.33802,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#6d214f;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1"
+       id="rect89"
+       width="512"
+       height="512"
+       x="0"
+       y="0"
+       ry="8" />
+    <path
+       style="fill:#f97f51;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1"
+       d="M 64.76629,458.46576 247.23372,53.534239 a 9.6151901,9.6151901 1.1538365e-6 0 1 17.53258,0 L 447.23371,458.46577 a 13.789147,13.789147 122.87153 0 1 -12.57173,19.45413 l -357.323957,-10e-6 A 13.789147,13.789147 57.128476 0 1 64.76629,458.46576 Z"
+       id="path174"
+       inkscape:path-effect="#path-effect175"
+       inkscape:original-d="M 56.000003,477.91989 256.00001,34.080105 456,477.9199 Z"
+       transform="matrix(1.0143838,0,0,1.0143838,-3.6822546,-10.675998)" />
+  </g>
+</svg>
