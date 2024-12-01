@@ -11,7 +11,9 @@ export interface Day {
 }
 
 const solvedDays: Map<number, Day[]> = new Map([
-  [2024, []],
+  [2024, [
+    { title: 'Historian Hysteria', partOne: true, partTwo: true, isVisual: false },
+  ]],
   [2023, [
     { title: 'Trebuchet?!', partOne: true, partTwo: true, isVisual: false },
     { title: 'Cube Conundrum', partOne: true, partTwo: true, isVisual: false },
