@@ -18,7 +18,7 @@
   const rCount: Map = {}
 
   if (props.input) {
-    props.input.forEach((s: string, i: number) => {
+    props.input.forEach((s: string) => {
       if (s.length < 1) {
         return
       }
@@ -33,8 +33,6 @@
 
     left.sort((a: number, b: number) => a - b)
     right.sort((a: number, b: number) => a - b)
-
-    console.log(rCount)
 
     const pOne = left.map((l: number, i: number) => Math.abs(l - right[i])).reduce((a: number, b: number) => a + b)
     const pTwo = left.map((l: number) => l * (rCount[l] || 0)).reduce((a: number, b: number) => a + b)
