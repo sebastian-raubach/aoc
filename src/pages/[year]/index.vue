@@ -26,13 +26,24 @@
             </div>
           </template>
           <v-card-text>
-            <v-tooltip v-if="day.isVisual" text="This task has a visual representation of the result.">
+            <v-tooltip
+              v-if="day.isVisual"
+              open-on-click
+              open-on-focus
+              text="This task has a visual representation of the result."
+            >
               <template #activator="{ props }">
                 <IBiEasel2Fill class="me-2" v-bind="props" />
               </template>
             </v-tooltip>
             <template v-if="day.warnings">
-              <v-tooltip v-for="(warning, wIndex) in day.warnings" :key="`warning-${wIndex}`" :text="warning">
+              <v-tooltip
+                v-for="(warning, wIndex) in day.warnings"
+                :key="`warning-${wIndex}`"
+                open-on-click
+                open-on-focus
+                :text="warning"
+              >
                 <template #activator="{ props }">
                   <IBiExclamationTriangleFill class="me-2 text-warning" v-bind="props" />
                 </template>

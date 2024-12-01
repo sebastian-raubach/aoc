@@ -87,7 +87,7 @@
         @on-finished="handleResult"
       />
     </template>
-    <MissingSolutionComponent v-else />
+    <MissingSolutionComponent :day="day" :year="year" v-else />
   </v-container>
 </template>
 
