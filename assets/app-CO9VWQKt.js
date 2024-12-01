@@ -1,1 +1,0 @@
-import{b0 as t}from"./index-DLH_dS_4.js";const o=t("app",{state:()=>({currentDay:new Map([[2015,18],[2016,7],[2017,25],[2018,23],[2020,25],[2021,25],[2022,23],[2023,23]]),theme:"system"}),actions:{setTheme(e){this.theme=e}},persist:{key:"aoc"}});export{o as c};
