@@ -125,12 +125,16 @@
     return result.map((h, i) => (i + 1) * h.bid).reduce((a, b) => a + b, 0)
   }
 
-  if (props.input) {
-    const pOne = solve(props.input, orderOne, determineTypeOne)
-    const pTwo = solve(props.input, orderTwo, determineTypeTwo)
+  const run = () => {
+    if (props.input) {
+      const pOne = solve(props.input, orderOne, determineTypeOne)
+      const pTwo = solve(props.input, orderTwo, determineTypeTwo)
 
-    emit('onFinished', pOne, pTwo)
+      emit('onFinished', pOne, pTwo)
+    }
   }
+
+  watch(() => props.input, () => run(), { immediate: true })
 </script>
 
 <style>

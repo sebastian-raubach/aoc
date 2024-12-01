@@ -39,18 +39,22 @@
     })
   }
 
-  if (props.input) {
-    // Parse the input
-    const time: number[] = props.input[0].split(/\s+/).slice(1).map(Number)
-    const dist: number[] = props.input[1].split(/\s+/).slice(1).map(Number)
+  const run = () => {
+    if (props.input) {
+      // Parse the input
+      const time: number[] = props.input[0].split(/\s+/).slice(1).map(Number)
+      const dist: number[] = props.input[1].split(/\s+/).slice(1).map(Number)
 
-    // Solve part one by multiplying the number of options together
-    const pOne = solve(time, dist).reduce((a, b) => a * b, 1)
-    // Solve part two by counting the number of options for the concatenated numbers
-    const pTwo = solve([+time.join('')], [+dist.join('')])[0]
+      // Solve part one by multiplying the number of options together
+      const pOne = solve(time, dist).reduce((a, b) => a * b, 1)
+      // Solve part two by counting the number of options for the concatenated numbers
+      const pTwo = solve([+time.join('')], [+dist.join('')])[0]
 
-    emit('onFinished', pOne, pTwo)
+      emit('onFinished', pOne, pTwo)
+    }
   }
+
+  watch(() => props.input, () => run(), { immediate: true })
 </script>
 
 <style>

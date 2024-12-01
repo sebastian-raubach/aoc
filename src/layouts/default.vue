@@ -45,7 +45,7 @@
         <v-container class="py-0 d-flex">
           <v-btn
             class="ms-auto"
-            href="https://github.com/sebastian-raubach/aoc"
+            :href="store.githubRepo"
             size="small"
             variant="plain"
           ><v-icon><IBiGithub /></v-icon></v-btn>

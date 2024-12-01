@@ -61,37 +61,41 @@
     return result
   }
 
-  if (props.input) {
-    const instructions: number[] = props.input[0].split('').map((i: string) => i === 'L' ? 0 : 1)
+  const run = () => {
+    if (props.input) {
+      const instructions: number[] = props.input[0].split('').map((i: string) => i === 'L' ? 0 : 1)
 
-    const map: PedigreeMap = {}
-    let pedigree = 'Line\tParent\n'
-    const pattern = /(?<from>[A-Z]+) = \((?<left>[A-Z]+), (?<right>[A-Z]+)\)/
-    for (let i = 2; i < props.input.length; i++) {
-      const res = props.input[i].match(pattern)?.groups
+      const map: PedigreeMap = {}
+      let pedigree = 'Line\tParent\n'
+      const pattern = /(?<from>[A-Z]+) = \((?<left>[A-Z]+), (?<right>[A-Z]+)\)/
+      for (let i = 2; i < props.input.length; i++) {
+        const res = props.input[i].match(pattern)?.groups
 
-      if (res) {
-        map[res.from] = [res.left, res.right]
-        pedigree += `${res.left}\t${res.from}\n`
-        pedigree += `${res.right}\t${res.from}\n`
+        if (res) {
+          map[res.from] = [res.left, res.right]
+          pedigree += `${res.left}\t${res.from}\n`
+          pedigree += `${res.right}\t${res.from}\n`
+        }
       }
+      pedigreeFile.value = pedigree
+
+      const p1 = solve('AAA', instructions, map, ['ZZZ'])
+      const pOne = p1.counter
+
+      traitFile.value = getTraitFile(p1.visitCounts)
+
+      const starts: string[] = Object.keys(map).filter(k => k.endsWith('A'))
+      const goals: string[] = Object.keys(map).filter(k => k.endsWith('Z'))
+
+      const counts = starts.map(s => solve(s, instructions, map, goals).counter)
+
+      const pTwo = lcm(counts)
+
+      emit('onFinished', pOne, pTwo)
     }
-    pedigreeFile.value = pedigree
-
-    const p1 = solve('AAA', instructions, map, ['ZZZ'])
-    const pOne = p1.counter
-
-    traitFile.value = getTraitFile(p1.visitCounts)
-
-    const starts: string[] = Object.keys(map).filter(k => k.endsWith('A'))
-    const goals: string[] = Object.keys(map).filter(k => k.endsWith('Z'))
-
-    const counts = starts.map(s => solve(s, instructions, map, goals).counter)
-
-    const pTwo = lcm(counts)
-
-    emit('onFinished', pOne, pTwo)
   }
+
+  watch(() => props.input, () => run(), { immediate: true })
 </script>
 
 <style scoped>

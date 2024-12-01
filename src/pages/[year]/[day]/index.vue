@@ -2,7 +2,10 @@
   <v-container v-if="actualDay">
     <v-btn class="mb-3" :to="`../${year}`" variant="tonal"><v-icon><IBiChevronDoubleLeft /></v-icon> Back</v-btn>
 
-    <h1 class="text-h4">Year {{ year }} - Day {{ day }}</h1>
+    <div class="d-flex justify-space-between">
+      <h1 class="text-h4">Year {{ year }} - Day {{ day }}</h1>
+      <v-btn v-if="githubUrl" :href="githubUrl" target="_blank"><v-icon><IBiGithub /></v-icon> Code on GitHub</v-btn>
+    </div>
     <h2 class="text-secondary">{{ actualDay.title }}</h2>
     <v-divider class="my-4" />
 
@@ -50,7 +53,7 @@
     </v-row>
 
     <v-form class="mb-5" @submit.prevent="handleInput">
-      <v-textarea v-model="input" label="Task input" />
+      <v-textarea v-model="input" class="task-input" label="Task input" />
 
       <v-btn color="primary" :disabled="!componentExists" type="submit"><v-icon><IBiPlayFill /></v-icon> Run</v-btn>
     </v-form>
@@ -89,11 +92,14 @@
 </template>
 
 <script lang="ts" setup>
+  import { coreStore } from '@/stores/app'
   import { useRoute } from 'vue-router'
   import { Day, solvedDays } from '@/plugins/days'
   // @ts-ignore
   import MarkdownIt from 'markdown-it'
   import MissingSolutionComponent from '@/components/MissingSolutionComponent.vue'
+
+  const store = coreStore()
 
   const markdownRenderer = new MarkdownIt({
     html: true,
@@ -157,6 +163,14 @@
     })
   })
 
+  const githubUrl = computed(() => {
+    if (componentExists.value) {
+      return `${store.githubRepo}blob/main/src/components/2024/D1.vue`
+    } else {
+      return undefined
+    }
+  })
+
   const getDataFile = async () => {
     // Load the file asynchronously
     input.value = (await import(`@/assets/data/${year.value}/${day.value}.txt?raw`)).default
@@ -176,5 +190,10 @@
   })
 </script>
 
-<style>
+<style scoped>
+.task-input {
+  font-family: monospace;
+  white-space: pre;
+  overflow: auto;
+}
 </style>

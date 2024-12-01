@@ -24,18 +24,22 @@
     }
   }
 
-  if (props.input) {
-    const result = [0, 0]
-    props.input.forEach(i => {
-      const numbers = i.split(' ').map(Number)
-      const temp = solve(numbers)
+  const run = () => {
+    if (props.input) {
+      const result = [0, 0]
+      props.input.forEach(i => {
+        const numbers = i.split(' ').map(Number)
+        const temp = solve(numbers)
 
-      result[0] += numbers[0] - temp[0]
-      result[1] += numbers[numbers.length - 1] + temp[1]
-    })
+        result[0] += numbers[0] - temp[0]
+        result[1] += numbers[numbers.length - 1] + temp[1]
+      })
 
-    emit('onFinished', result[1], result[0])
+      emit('onFinished', result[1], result[0])
+    }
   }
+
+  watch(() => props.input, () => run(), { immediate: true })
 </script>
 
 <style scoped>

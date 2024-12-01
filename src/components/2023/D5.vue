@@ -124,48 +124,52 @@
     })
   }
 
-  if (props.input) {
-    const seeds: number[] = props.input[0].split(': ')[1].split(' ').map(Number)
-    const mapping: Node[][] = []
+  const run = () => {
+    if (props.input) {
+      const seeds: number[] = props.input[0].split(': ')[1].split(' ').map(Number)
+      const mapping: Node[][] = []
 
-    let current: Node[] = []
-    for (let i = 2; i < props.input.length; i++) {
-      if (props.input[i] === '') {
-        mapping.push(current)
-        current = []
-        i++
-      } else {
-        const [destination, source, size] = props.input[i].split(' ').map(Number)
-        current.push({
-          from: source,
-          to: destination,
-          size,
-        })
+      let current: Node[] = []
+      for (let i = 2; i < props.input.length; i++) {
+        if (props.input[i] === '') {
+          mapping.push(current)
+          current = []
+          i++
+        } else {
+          const [destination, source, size] = props.input[i].split(' ').map(Number)
+          current.push({
+            from: source,
+            to: destination,
+            size,
+          })
+        }
       }
-    }
 
-    mapping.push(current)
+      mapping.push(current)
 
-    const traces: number[][] = []
-    const pOne = seeds.map((s: number) => {
-      const result: Trace = solve(mapping, s)
-      traces.push(result.trace)
-      return result.value
-    }).sort((a, b) => a - b)[0]
+      const traces: number[][] = []
+      const pOne = seeds.map((s: number) => {
+        const result: Trace = solve(mapping, s)
+        traces.push(result.trace)
+        return result.value
+      }).sort((a, b) => a - b)[0]
 
-    nextTick(() => plot(traces))
+      nextTick(() => plot(traces))
 
-    let min = Number.MAX_SAFE_INTEGER
-    for (let i = 1; i < seeds.length; i += 2) {
-      const start = seeds[i - 1]
-      const size = seeds[i]
-      for (let j = 0; j < size; j++) {
-        min = Math.min(min, solve(mapping, start + j).value)
+      let min = Number.MAX_SAFE_INTEGER
+      for (let i = 1; i < seeds.length; i += 2) {
+        const start = seeds[i - 1]
+        const size = seeds[i]
+        for (let j = 0; j < size; j++) {
+          min = Math.min(min, solve(mapping, start + j).value)
+        }
       }
-    }
 
-    emit('onFinished', pOne, min)
+      emit('onFinished', pOne, min)
+    }
   }
+
+  watch(() => props.input, () => run(), { immediate: true })
 
   watch(() => store.theme, (value: string) => {
     if (value === 'system') {

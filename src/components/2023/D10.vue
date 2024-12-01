@@ -97,67 +97,71 @@
     return result
   }
 
-  if (props.input) {
-    grid = props.input.map((i: string) => i.split(''))
+  const run = () => {
+    if (props.input) {
+      grid = props.input.map((i: string) => i.split(''))
 
-    let start: Position2d = { x: 0, y: 0 }
+      let start: Position2d = { x: 0, y: 0 }
 
-    props.input.forEach((r: string, ri: number) => {
-      const sIndex = r.indexOf('S')
+      props.input.forEach((r: string, ri: number) => {
+        const sIndex = r.indexOf('S')
 
-      if (sIndex !== -1) {
-        start = { x: sIndex, y: ri }
-      }
-    })
-
-    const circuit: Position2d[] = []
-    const visited = new Set<string>()
-    let current: Position2d = start
-
-    while (true) {
-      circuit.push(current)
-      visited.add(`${current.x},${current.y}`)
-
-      const currPipe = grid[current.y][current.x]
-      const neighbors: Position2d[] = getNeighbors(current)
-
-      const matches = neighbors.filter((n: Position2d) => {
-        const pipe = grid[n.y][n.x]
-
-        if (visited.has(`${n.x},${n.y}`)) {
-          return false
-        } else if (n.x === start.x && n.y === start.y) {
-          return true
-        } else if (pipe === '.') {
-          return false
-        } else {
-          return pipes[pipe](current, n) && pipes[currPipe](n, current)
+        if (sIndex !== -1) {
+          start = { x: sIndex, y: ri }
         }
       })
 
-      if (matches.length > 0) {
-        current = matches[0]
-      } else {
-        break
+      const circuit: Position2d[] = []
+      const visited = new Set<string>()
+      let current: Position2d = start
+
+      while (true) {
+        circuit.push(current)
+        visited.add(`${current.x},${current.y}`)
+
+        const currPipe = grid[current.y][current.x]
+        const neighbors: Position2d[] = getNeighbors(current)
+
+        const matches = neighbors.filter((n: Position2d) => {
+          const pipe = grid[n.y][n.x]
+
+          if (visited.has(`${n.x},${n.y}`)) {
+            return false
+          } else if (n.x === start.x && n.y === start.y) {
+            return true
+          } else if (pipe === '.') {
+            return false
+          } else {
+            return pipes[pipe](current, n) && pipes[currPipe](n, current)
+          }
+        })
+
+        if (matches.length > 0) {
+          current = matches[0]
+        } else {
+          break
+        }
+      }
+
+      fixStart(circuit)
+
+      const pOne = Math.floor(circuit.length / 2)
+      const enclosed: Position2d[] = findEnclosed(circuit)
+      const pTwo = enclosed.length
+
+      emit('onFinished', pOne, pTwo)
+
+      subProps.value = {
+        finished: true,
+        grid,
+        enclosed,
+        path: circuit,
+        start,
       }
     }
-
-    fixStart(circuit)
-
-    const pOne = Math.floor(circuit.length / 2)
-    const enclosed: Position2d[] = findEnclosed(circuit)
-    const pTwo = enclosed.length
-
-    emit('onFinished', pOne, pTwo)
-
-    subProps.value = {
-      finished: true,
-      grid,
-      enclosed,
-      path: circuit,
-      start,
-    }
   }
+
+  watch(() => props.input, () => run(), { immediate: true })
 </script>
 
 <style scoped>

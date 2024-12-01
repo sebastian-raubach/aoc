@@ -32,82 +32,86 @@
   const numbers: Position[] = []
   const symbols: Symbol[] = []
 
-  if (props.input) {
-    grid = props.input.map((i: string) => i.split(''))
+  const run = () => {
+    if (props.input) {
+      grid = props.input.map((i: string) => i.split(''))
 
-    grid.forEach((parts, y) => {
-      const i = parts.join('')
-      let xStart = null
-      for (let x = 0; x < parts.length; x++) {
-        if (parts[x] === '.') {
-          // Dot
-          if (xStart !== null) {
-            numbers.push({
-              xStart,
-              xEnd: x - 1,
-              y,
-              value: +i.substring(xStart, x),
-            })
-            xStart = null
-          }
+      grid.forEach((parts, y) => {
+        const i = parts.join('')
+        let xStart = null
+        for (let x = 0; x < parts.length; x++) {
+          if (parts[x] === '.') {
+            // Dot
+            if (xStart !== null) {
+              numbers.push({
+                xStart,
+                xEnd: x - 1,
+                y,
+                value: +i.substring(xStart, x),
+              })
+              xStart = null
+            }
 
-          continue
-        } else if (parts[x] === `${+parts[x]}`) {
-          // Number
-          if (xStart === null) {
-            xStart = x
-          }
-        } else {
-          // Symbol
-          if (xStart !== null) {
-            numbers.push({
-              xStart,
-              xEnd: x - 1,
-              y,
-              value: +i.substring(xStart, x),
-            })
-            xStart = null
-          }
+            continue
+          } else if (parts[x] === `${+parts[x]}`) {
+            // Number
+            if (xStart === null) {
+              xStart = x
+            }
+          } else {
+            // Symbol
+            if (xStart !== null) {
+              numbers.push({
+                xStart,
+                xEnd: x - 1,
+                y,
+                value: +i.substring(xStart, x),
+              })
+              xStart = null
+            }
 
-          symbols.push({ x, y, touching: [], symbol: parts[x] })
+            symbols.push({ x, y, touching: [], symbol: parts[x] })
+          }
         }
-      }
 
-      if (xStart !== null) {
-        numbers.push({
-          xStart,
-          xEnd: i.length - 1,
-          y,
-          value: +i.substring(xStart, i.length),
-        })
-        xStart = null
-      }
-    })
-
-    const pOne = numbers.map(n => {
-      let touches = false
-      symbols.forEach(s => {
-        if ((Math.abs(s.y - n.y) <= 1) && (s.x >= n.xStart - 1) && (s.x <= n.xEnd + 1)) {
-          touches ||= true
-          s.touching.push(n)
+        if (xStart !== null) {
+          numbers.push({
+            xStart,
+            xEnd: i.length - 1,
+            y,
+            value: +i.substring(xStart, i.length),
+          })
+          xStart = null
         }
       })
 
-      return touches ? n.value : 0
-    }).reduce((a, b) => a + b, 0)
+      const pOne = numbers.map(n => {
+        let touches = false
+        symbols.forEach(s => {
+          if ((Math.abs(s.y - n.y) <= 1) && (s.x >= n.xStart - 1) && (s.x <= n.xEnd + 1)) {
+            touches ||= true
+            s.touching.push(n)
+          }
+        })
 
-    const pTwo = symbols.map(s => {
-      if (s.symbol === '*' && s.touching.length === 2) {
-        return s.touching[0].value * s.touching[1].value
-      } else {
-        return 0
-      }
-    }).reduce((a, b) => a + b, 0)
+        return touches ? n.value : 0
+      }).reduce((a, b) => a + b, 0)
 
-    nextTick(() => draw())
+      const pTwo = symbols.map(s => {
+        if (s.symbol === '*' && s.touching.length === 2) {
+          return s.touching[0].value * s.touching[1].value
+        } else {
+          return 0
+        }
+      }).reduce((a, b) => a + b, 0)
 
-    emit('onFinished', pOne, pTwo)
+      nextTick(() => draw())
+
+      emit('onFinished', pOne, pTwo)
+    }
   }
+
+  watch(() => props.input, () => run(), { immediate: true })
 
   const draw = () => {
     // Initialise the canvas
