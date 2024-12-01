@@ -39,7 +39,18 @@
         </v-menu>
       </v-app-bar>
 
-      <router-view />
+      <router-view class="h-100" />
+
+      <v-footer>
+        <v-container class="py-0 d-flex">
+          <v-btn
+            class="ms-auto"
+            href="https://github.com/sebastian-raubach/aoc"
+            size="small"
+            variant="plain"
+          ><v-icon><IBiGithub /></v-icon></v-btn>
+        </v-container>
+      </v-footer>
     </v-main>
   </v-app>
 </template>

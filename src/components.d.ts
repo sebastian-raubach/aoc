@@ -22,6 +22,7 @@ declare module 'vue' {
     IBiCircleHalf: typeof import('~icons/bi/circle-half')['default']
     IBiEasel2Fill: typeof import('~icons/bi/easel2-fill')['default']
     IBiExclamationTriangleFill: typeof import('~icons/bi/exclamation-triangle-fill')['default']
+    IBiGithub: typeof import('~icons/bi/github')['default']
     IBiMoonStars: typeof import('~icons/bi/moon-stars')['default']
     IBiPlayFill: typeof import('~icons/bi/play-fill')['default']
     IBiStar: typeof import('~icons/bi/star')['default']
