@@ -87,7 +87,7 @@
         @on-finished="handleResult"
       />
     </template>
-    <MissingSolutionComponent :day="day" :year="year" v-else />
+    <MissingSolutionComponent v-else :day="day" :year="year" />
   </v-container>
 </template>
 
@@ -165,7 +165,7 @@
 
   const githubUrl = computed(() => {
     if (componentExists.value) {
-      return `${store.githubRepo}blob/main/src/components/2024/D1.vue`
+      return `${store.githubRepo}blob/main/src/components/${year.value}/D${day.value}.vue`
     } else {
       return undefined
     }

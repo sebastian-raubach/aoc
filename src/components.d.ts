@@ -17,7 +17,6 @@ declare module 'vue' {
     D7: typeof import('./components/2023/D7.vue')['default']
     D8: typeof import('./components/2023/D8.vue')['default']
     D9: typeof import('./components/2023/D9.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     IBiChevronDoubleLeft: typeof import('~icons/bi/chevron-double-left')['default']
     IBiCircleHalf: typeof import('~icons/bi/circle-half')['default']
     IBiEasel2Fill: typeof import('~icons/bi/easel2-fill')['default']

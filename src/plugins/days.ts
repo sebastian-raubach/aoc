@@ -13,6 +13,7 @@ export interface Day {
 const solvedDays: Map<number, Day[]> = new Map([
   [2024, [
     { title: 'Historian Hysteria', partOne: true, partTwo: true, isVisual: false },
+    { title: 'Red-Nosed Reports', partOne: true, partTwo: true, isVisual: true },
   ]],
   [2023, [
     { title: 'Trebuchet?!', partOne: true, partTwo: true, isVisual: false },
