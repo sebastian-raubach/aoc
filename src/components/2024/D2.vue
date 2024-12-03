@@ -1,12 +1,12 @@
 <template>
   <v-row>
     <v-col cols="12" md="6">
-      <div class="canvas-holder mb-5">
+      <div class="canvas-holder mb-5 text-center">
         <canvas id="partOne" class="canvas" height="500" width="500" />
       </div>
     </v-col>
     <v-col cols="12" md="6">
-      <div class="canvas-holder mb-5">
+      <div class="canvas-holder mb-5 text-center">
         <canvas id="partTwo" class="canvas" height="500" width="500" />
       </div>
     </v-col>

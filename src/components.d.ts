@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    copy: typeof import('./components/2024/D1 copy.vue')['default']
     D1: typeof import('./components/2023/D1.vue')['default']
     D10: typeof import('./components/2023/D10.vue')['default']
     D2: typeof import('./components/2023/D2.vue')['default']

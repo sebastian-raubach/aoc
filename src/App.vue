@@ -27,6 +27,22 @@ pre {
   -ms-overflow-style: scrollbar;
 }
 
+.markdown strong, .markdown b {
+  font-weight: 500;
+}
+
+.v-theme--dark .markdown strong, .markdown b {
+  text-shadow: 0 0 3px #ccc;
+}
+
+.v-theme--light .markdown strong, .markdown b {
+  text-shadow: 0 0 2px #333;
+}
+
+.markdown pre strong, .markdown pre b {
+  text-shadow: 0 0 3px #FD7272;
+}
+
 a {
   color: rgba(var(--v-theme-primary), var(--v-high-emphasis-opacity));
 }
