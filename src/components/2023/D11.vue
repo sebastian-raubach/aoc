@@ -53,7 +53,7 @@
   const solve = (points: Point[], extensions: Extension, factor: number) => {
     // Adjust the points by the factor extension
     const adjusted = JSON.parse(JSON.stringify(points))
-    adjusted.forEach(p => {
+    adjusted.forEach((p: Point) => {
       const dx = extensions.cols.filter(c => c < p.x).length
       const dy = extensions.rows.filter(r => r < p.y).length
 

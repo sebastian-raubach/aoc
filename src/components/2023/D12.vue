@@ -17,7 +17,7 @@
 
   const countArrangments = (conditions: string, pos: number, runs: number[], minLength: number, memo: number[][]): number => {
     // memo is indexed by pos, then by runs.length
-    function memoize (result: number) {
+    function memoize (result: number): number {
       if (!memo[pos]) {
         memo[pos] = []
       }
@@ -76,6 +76,8 @@
 
       return memoize(result)
     }
+
+    return 0
   }
 
   const run = () => {
