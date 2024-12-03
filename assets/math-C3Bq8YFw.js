@@ -1,0 +1,1 @@
+const g=(t,o)=>(t%o+o)%o,f=t=>{const o=t.length,l=t[0].length,c=[];for(let n=0;n<l;n++)c[n]=Array(o);for(let n=0;n<o;n++)for(let s=0;s<l;s++)c[s][n]=t[n][s];return c},r=(t,o)=>o===0?t:r(o,t%o),e=(t,o)=>t/r(t,o)*o,d=t=>t.reduce(e,1),m=t=>d(t);export{m as l,g as m,f as t};
