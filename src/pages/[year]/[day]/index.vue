@@ -82,7 +82,7 @@
     <template v-if="componentExists">
       <component
         :is="currentDay"
-        v-if="parsedInput"
+        v-if="parsedInput && shouldRun"
         :input="parsedInput"
         @on-finished="handleResult"
       />
@@ -119,6 +119,7 @@
   const showPartOne = ref<boolean>(false)
   const showPartTwo = ref<boolean>(false)
   const componentExists = ref<boolean>(true)
+  const shouldRun = ref<boolean>(false)
 
   const actualDay: ComputedRef<Day | undefined> = computed(() => {
     if (year.value && day.value) {
@@ -134,12 +135,16 @@
   })
 
   const handleInput = () => {
-    if (input.value) {
-      // Split by newline
-      parsedInput.value = input.value.split(/\r?\n/)
-    } else {
-      parsedInput.value = undefined
-    }
+    shouldRun.value = false
+    nextTick(() => {
+      if (input.value) {
+        // Split by newline
+        parsedInput.value = input.value.split(/\r?\n/)
+      } else {
+        parsedInput.value = undefined
+      }
+      shouldRun.value = true
+    })
   }
 
   const handleResult = (pOne: string, pTwo: string) => {

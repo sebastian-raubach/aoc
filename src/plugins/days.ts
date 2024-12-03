@@ -31,7 +31,7 @@ const solvedDays: Map<number, Day[]> = new Map([
     { title: 'Hot Springs', partOne: true, partTwo: true, isVisual: false },
     { title: 'Point of Incidence', partOne: true, partTwo: true, isVisual: false },
     { title: 'Parabolic Reflector Dish', partOne: true, partTwo: true, isVisual: false },
-    { title: 'Lens Library', partOne: true, partTwo: true, isVisual: false },
+    { title: 'Lens Library', partOne: true, partTwo: true, isVisual: true },
     { title: 'The Floor Will Be Lava', partOne: true, partTwo: true, isVisual: true },
     { title: 'Clumsy Crucible', partOne: true, partTwo: true, isVisual: true },
     { title: 'Lavaduct Lagoon', partOne: true, partTwo: true, isVisual: true, warnings: [WARNING_LONG_RUNTIME] },

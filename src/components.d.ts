@@ -7,8 +7,30 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    2023D1: typeof import('./components/2023/D1.vue')['default']
+    2023D10: typeof import('./components/2023/D10.vue')['default']
+    2023D2: typeof import('./components/2023/D2.vue')['default']
+    2023D3: typeof import('./components/2023/D3.vue')['default']
+    2023D4: typeof import('./components/2023/D4.vue')['default']
+    2023D5: typeof import('./components/2023/D5.vue')['default']
+    2023D6: typeof import('./components/2023/D6.vue')['default']
+    2023D7: typeof import('./components/2023/D7.vue')['default']
+    2023D8: typeof import('./components/2023/D8.vue')['default']
+    2023D9: typeof import('./components/2023/D9.vue')['default']
+    2023V10: typeof import('./components/2023/V10.vue')['default']
+    2024D1: typeof import('./components/2024/D1.vue')['default']
+    2024D2: typeof import('./components/2024/D2.vue')['default']
+    2024D3: typeof import('./components/2024/D3.vue')['default']
+    2024V3: typeof import('./components/2024/V3.vue')['default']
+    copy: typeof import('./components/2023/V10 copy.vue')['default']
     D1: typeof import('./components/2023/D1.vue')['default']
     D10: typeof import('./components/2023/D10.vue')['default']
+    D11: typeof import('./components/2023/D11.vue')['default']
+    D12: typeof import('./components/2023/D12.vue')['default']
+    D13: typeof import('./components/2023/D13.vue')['default']
+    D14: typeof import('./components/2023/D14.vue')['default']
+    D15: typeof import('./components/2023/D15.vue')['default']
+    D16: typeof import('./components/2023/D16.vue')['default']
     D2: typeof import('./components/2023/D2.vue')['default']
     D3: typeof import('./components/2023/D3.vue')['default']
     D4: typeof import('./components/2023/D4.vue')['default']
@@ -31,6 +53,7 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     V10: typeof import('./components/2023/V10.vue')['default']
+    V16: typeof import('./components/2023/V16.vue')['default']
     V3: typeof import('./components/2024/V3.vue')['default']
   }
 }
