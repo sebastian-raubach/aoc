@@ -79,7 +79,7 @@
     if (props.input) {
       const pOne = props.input[0].split(',').map(i => hash(i)).reduce((a, b) => a + b, 0)
 
-      const boxes: Lens[][] = Array.from(Array(256).keys()).map(i => [])
+      const boxes: Lens[][] = Array.from(Array(256).keys()).map(() => [])
 
       props.input[0].split(',').forEach(i => {
         if (i.endsWith('-')) {

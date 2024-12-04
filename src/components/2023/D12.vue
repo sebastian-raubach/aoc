@@ -100,8 +100,8 @@
 
       const pTwo = parsed.map(p => {
         // Concatenate the same condition and run lengths 5 times
-        p.conditions = [0, 1, 2, 3, 4].map(_ => p.conditions).join('?')
-        p.runLengths = [0, 1, 2, 3, 4].map(_ => p.runLengths).flat()
+        p.conditions = [0, 1, 2, 3, 4].map(() => p.conditions).join('?')
+        p.runLengths = [0, 1, 2, 3, 4].map(() => p.runLengths).flat()
         // Then run the same as part 1
         const minLength = p.runLengths.reduce((a, b) => a + b + 1)
         p.possibleCount = countArrangments(p.conditions, 0, p.runLengths, minLength, [])

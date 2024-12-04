@@ -17,6 +17,17 @@ const transpose = matrix => {
   return grid
 }
 
+const rotateRight = grid => {
+  const result = []
+  grid.forEach((a, i, aa) => {
+    a.forEach((b, j) => {
+      result[j] = result[j] || []
+      result[j][aa.length - i - 1] = b
+    })
+  })
+  return result
+}
+
 const gcd = (a, b) => b === 0 ? a : gcd(b, a % b)
 const lcmInternal = (a, b) => a / gcd(a, b) * b
 const lcmAll = ns => ns.reduce(lcmInternal, 1)
@@ -26,5 +37,6 @@ const lcm = values => lcmAll(values)
 export {
   mod,
   transpose,
+  rotateRight,
   lcm,
 }

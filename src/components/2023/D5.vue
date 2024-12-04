@@ -77,7 +77,7 @@
       type: 'parcoords',
       line: {
         color: [] as number[],
-        colorscale: colors.map((c, i) => [i / (colors.length - 1), c])
+        colorscale: colors.map((c, i) => [i / (colors.length - 1), c]),
       },
       dimensions: dims.map(d => {
         return {
