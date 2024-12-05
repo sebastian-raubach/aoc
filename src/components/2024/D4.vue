@@ -42,6 +42,11 @@
   let pOneGrid: number[][]
   let pTwoGrid: number[][]
 
+  /**
+   * Checks if one of the rotations of X-MAS can be positioned with current position in the top left corner
+   * @param current Current position to be considered
+   * @returns true if X-MAS is valid from here in any rotation, false otherwise
+   */
   const checkMas = (current: Position2d) => {
     return mass.some(m => {
       for (let y = 0; y < 3; y++) {
@@ -58,6 +63,13 @@
     })
   }
 
+  /**
+   * Checks if the XMAS sequence can be achieved in the current direction
+   * @param current Current position to be considered
+   * @param dir The direction (first x, then y) to move in to
+   * @param letterIndex The index of the current letter we're looking for
+   * @returns true if the sequence matches, false otherwise
+   */
   const checkDir = (current: Position2d, dir: number[], letterIndex: number) => {
     if (letterIndex >= letters.length) {
       // Full word found
@@ -96,6 +108,7 @@
                 for (let c = 0; c < letters.length; c++) {
                   pOneGrid[y + c * d[1]][x + c * d[0]]++
                 }
+                // Increment task result
                 pOne++
               }
             })
@@ -103,11 +116,13 @@
 
           if (y < grid.length - 2 && x < grid.length - 2) {
             if (checkMas({ x, y })) {
+              // Remember usage counts
               pTwoGrid[y][x]++
               pTwoGrid[y][x + 2]++
               pTwoGrid[y + 2][x]++
               pTwoGrid[y + 1][x + 1]++
               pTwoGrid[y + 2][x + 2]++
+              // Increment task result
               pTwo++
             }
           }
@@ -116,14 +131,15 @@
       emit('onFinished', pOne, pTwo)
 
       nextTick(() => {
+        // Determine the maximum number of cell usages for the gradient
         let maxValue = 0
         pOneGrid.forEach(r => r.forEach(c => { maxValue = Math.max(maxValue, c) }))
         pTwoGrid.forEach(r => r.forEach(c => { maxValue = Math.max(maxValue, c) }))
-
         const gradient = createMultiColorGradient(VIRIDIS, maxValue * 10)
 
-        gridOne.value = pOneGrid.map((r, y) => r.map((c, x) => `<span class="day-2024-4-match" style="background-color: ${gradient[c ? (c * 10) : 0]}">${c ? grid[y][x] : '.'}</span>`).join('')).join('<br>')
-        gridTwo.value = pTwoGrid.map((r, y) => r.map((c, x) => `<span class="day-2024-4-match" style="background-color: ${gradient[c ? (c * 10) : 0]}">${c ? grid[y][x] : '.'}</span>`).join('')).join('<br>')
+        // Then create the visualization grid by coloring each cell according to value
+        gridOne.value = pOneGrid.map((r, y) => r.map((c, x) => `<span class="day-2024-4-match" style="background-color: ${gradient[c * 10]}">${c ? grid[y][x] : '.'}</span>`).join('')).join('<br>')
+        gridTwo.value = pTwoGrid.map((r, y) => r.map((c, x) => `<span class="day-2024-4-match" style="background-color: ${gradient[c * 10]}">${c ? grid[y][x] : '.'}</span>`).join('')).join('<br>')
       })
     }
   }

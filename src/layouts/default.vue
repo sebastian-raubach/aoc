@@ -2,11 +2,13 @@
   <v-app class="main-application">
     <v-main>
       <v-app-bar color="transparent" :elevation="0">
+        <v-avatar class="ms-5" image="@/assets/logo.svg" rounded="0" />
+
         <v-app-bar-title style="cursor: pointer" @click="router.push('/')">Advent of Code</v-app-bar-title>
-        <v-spacer></v-spacer>
+        <v-spacer />
 
         <v-menu>
-          <template v-slot:activator="{ props }">
+          <template #activator="{ props }">
             <v-btn icon v-bind="props">
               <v-icon>
                 <IBiMoonStars v-if="store.theme === 'dark'" />
@@ -17,19 +19,19 @@
           </template>
           <v-list>
             <v-list-subheader class="text-high-emphasis text-uppercase font-weight-black">Theme</v-list-subheader>
-            <v-list-item @click="store.setTheme('light')" :active="store.theme === 'light'">
+            <v-list-item :active="store.theme === 'light'" @click="store.setTheme('light')">
               <template #prepend>
                 <v-icon><IBiSunFill /></v-icon>
               </template>
               <v-list-item-title>Light</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="store.setTheme('dark')" :active="store.theme === 'dark'">
+            <v-list-item :active="store.theme === 'dark'" @click="store.setTheme('dark')">
               <template #prepend>
                 <v-icon><IBiMoonStars /></v-icon>
               </template>
               <v-list-item-title>Dark</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="store.setTheme('system')" :active="store.theme === 'system'">
+            <v-list-item :active="store.theme === 'system'" @click="store.setTheme('system')">
               <template #prepend>
                 <v-icon><IBiCircleHalf /></v-icon>
               </template>

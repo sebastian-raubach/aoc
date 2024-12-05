@@ -2,12 +2,12 @@
   <v-row>
     <v-col cols="12" md="6">
       <div class="canvas-holder mb-5 text-center">
-        <canvas id="partOne" class="canvas" height="500" width="500" />
+        <canvas id="partOne" class="canvas" height="1000" width="1000" />
       </div>
     </v-col>
     <v-col cols="12" md="6">
       <div class="canvas-holder mb-5 text-center">
-        <canvas id="partTwo" class="canvas" height="500" width="500" />
+        <canvas id="partTwo" class="canvas" height="1000" width="1000" />
       </div>
     </v-col>
   </v-row>
@@ -38,7 +38,7 @@
 
       if (ctx) {
         ctx.translate(0.5, 0.5)
-        const factor = 5
+        const factor = 10
         ctx.strokeStyle = '#ff0000'
 
         const maxSeqLength = Math.max.apply(null, reports.map(r => r.sequence.length)) - 1
@@ -48,7 +48,7 @@
         let counter = 0
         const drawLine = (r: Report) => {
           if (r.validPartOne) {
-            ctx.lineWidth = 1.5
+            ctx.lineWidth = 2
             ctx.strokeStyle = gradient[counter++]
           } else {
             ctx.lineWidth = 1
@@ -76,7 +76,7 @@
 
       if (ctx) {
         ctx.translate(0.5, 0.5)
-        const factor = 5
+        const factor = 10
         ctx.strokeStyle = '#ff0000'
 
         const maxSeqLength = Math.max.apply(null, reports.map(r => r.reducedSequence.length)) - 1
@@ -88,7 +88,7 @@
           console.log(r)
           let seq
           if (r.validPartTwo) {
-            ctx.lineWidth = 1.5
+            ctx.lineWidth = 2
             ctx.strokeStyle = gradient[counter++]
             seq = r.reducedSequence
           } else {

@@ -31,6 +31,10 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <v-divider class="my-4" />
+
+    <p class="my-5 text-center">Welcome to the page where I host my solutions to the <a href="https://adventofcode.com/">Advent of Code</a>. Please note that this is not the official Advent of Code page, it's just one of my side-projects.</p>
   </v-container>
 </template>
 

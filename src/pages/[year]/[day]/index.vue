@@ -9,6 +9,8 @@
     <h2 class="text-secondary">{{ actualDay.title }}</h2>
     <v-divider class="my-4" />
 
+    <p>The original task description can be found on the official Advent of Code page: <a :href="aocUrl">{{ aocUrl }}</a></p>
+
     <v-row v-if="markdownSource && markdownSource.length === 2" class="mb-5">
       <v-col cols="12" md="6">
         <v-card subtitle="Description of task part one." title="Part 1">
@@ -176,6 +178,8 @@
     }
   })
 
+  const aocUrl = computed(() => `https://adventofcode.com/${year.value}/day/${day.value}`)
+
   const getDataFile = async () => {
     // Load the file asynchronously
     input.value = (await import(`@/assets/data/${year.value}/${day.value}.txt?raw`)).default
@@ -195,8 +199,8 @@
   })
 </script>
 
-<style scoped>
-.task-input {
+<style>
+.task-input textarea {
   font-family: monospace;
   white-space: pre;
   overflow: auto;

@@ -28,6 +28,26 @@ const rotateRight = grid => {
   return result
 }
 
+const permutate = inputArr => {
+  const result = []
+
+  const permute = (arr, m = []) => {
+    if (arr.length === 0) {
+      result.push(m)
+    } else {
+      for (let i = 0; i < arr.length; i++) {
+        const curr = arr.slice()
+        const next = curr.splice(i, 1)
+        permute(curr.slice(), m.concat(next))
+      }
+    }
+  }
+
+  permute(inputArr)
+
+  return result
+}
+
 const gcd = (a, b) => b === 0 ? a : gcd(b, a % b)
 const lcmInternal = (a, b) => a / gcd(a, b) * b
 const lcmAll = ns => ns.reduce(lcmInternal, 1)
@@ -38,5 +58,6 @@ export {
   mod,
   transpose,
   rotateRight,
+  permutate,
   lcm,
 }
