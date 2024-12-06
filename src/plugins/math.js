@@ -54,10 +54,15 @@ const lcmAll = ns => ns.reduce(lcmInternal, 1)
 
 const lcm = values => lcmAll(values)
 
+const manhattan = (a, b) => {
+  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y)
+}
+
 export {
   mod,
   transpose,
   rotateRight,
   permutate,
   lcm,
+  manhattan,
 }
