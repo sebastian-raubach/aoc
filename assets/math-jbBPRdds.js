@@ -1,1 +1,0 @@
-const h=(o,t)=>(o%t+t)%t,f=o=>{const t=o.length,c=o[0].length,s=[];for(let n=0;n<c;n++)s[n]=Array(t);for(let n=0;n<t;n++)for(let r=0;r<c;r++)s[r][n]=o[n][r];return s},u=o=>{const t=[];return o.forEach((c,s,n)=>{c.forEach((r,e)=>{t[e]=t[e]||[],t[e][n.length-s-1]=r})}),t},l=(o,t)=>t===0?o:l(t,o%t),a=(o,t)=>o/l(o,t)*t,g=o=>o.reduce(a,1),d=o=>g(o);export{d as l,h as m,u as r,f as t};
