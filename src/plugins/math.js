@@ -58,6 +58,21 @@ const manhattan = (a, b) => {
   return Math.abs(a.x - b.x) + Math.abs(a.y - b.y)
 }
 
+const enumerateBase = (number, base) => {
+  const states = []
+
+  // Convert to decimal
+  const maxDecimal = parseInt(`${base - 1}`.repeat(number), base)
+
+  // For every number between 0->decimal
+  for (let i = 0; i <= maxDecimal; i++) {
+    // Convert to binary, pad with 0, and add to final results
+    states.push(i.toString(base).padStart(number, '0').split('').map(Number))
+  }
+
+  return states
+}
+
 export {
   mod,
   transpose,
@@ -65,4 +80,5 @@ export {
   permutate,
   lcm,
   manhattan,
+  enumerateBase,
 }
