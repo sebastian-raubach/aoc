@@ -126,3 +126,11 @@
 
   onMounted(() => draw())
 </script>
+
+<style scoped>
+.canvas-holder {
+  overflow: auto;
+  height: 1040px;
+  width: 100%;
+}
+</style>
