@@ -20,7 +20,7 @@ const solvedDays: Map<number, Day[]> = new Map([
     { title: 'Guard Gallivant', partOne: true, partTwo: true, isVisual: true },
     { title: 'Bridge Repair', partOne: true, partTwo: true, isVisual: false },
     { title: 'Resonant Collinearity', partOne: true, partTwo: true, isVisual: true },
-    { title: 'Disk Fragmenter', partOne: true, partTwo: true, isVisual: false },
+    { title: 'Disk Fragmenter', partOne: true, partTwo: true, isVisual: true },
   ]],
   [2023, [
     { title: 'Trebuchet?!', partOne: true, partTwo: true, isVisual: false },
