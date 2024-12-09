@@ -1,4 +1,6 @@
 const VIRIDIS = ['#440154', '#48186a', '#472d7b', '#424086', '#3b528b', '#33638d', '#2c728e', '#26828e', '#21918c', '#1fa088', '#28ae80', '#3fbc73', '#5ec962', '#84d44b', '#addc30', '#d8e219', '#fde725']
+const ELECTRIC = ['#000000', '#1e0064', '#780064', '#a05a00', '#e6c800', '#fffadc']
+const JET = ['#000083', '#003caa', '#05ffff', '#ffff00', '#fa0000', '#800000']
 
 /**
  * Converts a HEX value into an RGB object
@@ -77,4 +79,6 @@ export {
   createColorGradient,
   createMultiColorGradient,
   VIRIDIS,
+  ELECTRIC,
+  JET,
 }
