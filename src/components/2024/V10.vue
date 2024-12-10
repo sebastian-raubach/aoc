@@ -227,8 +227,7 @@
 
   onMounted(() => {
     drawPartOne()
-
-    setTimeout(drawPartTwo, 2000)
+    drawPartTwo()
   })
 </script>
 
