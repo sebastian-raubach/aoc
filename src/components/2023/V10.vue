@@ -15,7 +15,14 @@
     enclosed: Position2d[],
   }>()
 
-  const drawProps = {
+  interface DrawProps {
+    gradient: string[]
+    pathIndex: number
+    enclosedIndex: number
+    factor: number
+  }
+
+  const drawProps: DrawProps = {
     gradient: [],
     pathIndex: 0,
     enclosedIndex: 0,

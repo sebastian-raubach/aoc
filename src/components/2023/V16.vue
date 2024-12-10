@@ -15,7 +15,13 @@
     height: number
   }>()
 
-  const drawProps = {
+  interface DrawProps {
+    gradient: string[]
+    factor: number
+    pathIndex: number
+  }
+
+  const drawProps: DrawProps = {
     gradient: [],
     factor: 7,
     pathIndex: 0,
