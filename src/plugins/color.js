@@ -55,7 +55,13 @@ const createColorGradient = (one, two, steps) => {
 
 const createMultiColorGradient = (colors, steps) => {
   if (colors.length > steps) {
-    return colors.slice(0, steps)
+    const result = []
+    for (let i = 0; i < steps; i++) {
+      const index = Math.floor((i * colors.length) / steps)
+      result.push(colors[index])
+    }
+
+    return result
   }
 
   const sections = colors.length - 1
