@@ -50,10 +50,10 @@
 
       let pOne = 0
       let pTwo = 0
-      for (let i = 0; i < numbers.length; i++) {
-        pOne += solve(numbers[i], 25)
-        pTwo += solve(numbers[i], 75)
-      }
+      numbers.forEach(n => {
+        pOne += solve(n, 25)
+        pTwo += solve(n, 75)
+      })
 
       emit('onFinished', pOne, pTwo)
     }

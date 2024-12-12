@@ -47,39 +47,6 @@
     paths: new Map(),
   }
 
-  // const drawPath = () => {
-  //   const i = drawProps.pathIndex
-
-  //   ctx.fillStyle = drawProps.fgGradient[i]
-  //   ctx.fillRect(props.path[i].x * drawProps.factor, props.path[i].y * drawProps.factor, drawProps.factor, drawProps.factor)
-
-  //   if (i < props.path.length - 1) {
-  //     drawProps.pathIndex++
-  //     window.requestAnimationFrame(() => drawPath())
-  //   } else {
-  //     const sorted: Map<number, Position2d[]> = new Map()
-  //     const keys: Set<number> = new Set()
-
-  //     props.obstacles.forEach(o => {
-  //       const distance = manhattan(o, { x: Math.floor(props.width / 2), y: Math.floor(props.height / 2) })
-  //       keys.add(distance)
-
-  //       let atDistance = sorted.get(distance)
-
-  //       if (!atDistance) {
-  //         atDistance = [o]
-  //       } else {
-  //         atDistance.push(o)
-  //       }
-
-  //       sorted.set(distance, atDistance)
-  //     })
-
-  //     // const sorted = props.obstacles.concat().sort((a: Position2d, b: Position2d) => Math.sign((a.x + a.y) - (b.x + b.y)))
-  //     window.requestAnimationFrame(() => drawObstacles(sorted, [...keys].sort((a, b) => a - b)))
-  //   }
-  // }
-
   const reset = () => {
     // Set the canvas size
     ctx.fillStyle = '#222222'
