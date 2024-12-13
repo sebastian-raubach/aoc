@@ -24,6 +24,7 @@ const solvedDays: Map<number, Day[]> = new Map([
     { title: 'Hoof It', partOne: true, partTwo: true, isVisual: true },
     { title: 'Plutonian Pebbles', partOne: true, partTwo: true, isVisual: false },
     { title: 'Garden Groups', partOne: true, partTwo: true, isVisual: true },
+    { title: 'Claw Contraption', partOne: true, partTwo: true, isVisual: false },
   ]],
   [2023, [
     { title: 'Trebuchet?!', partOne: true, partTwo: true, isVisual: false },
