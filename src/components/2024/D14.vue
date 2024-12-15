@@ -11,13 +11,13 @@
     input?: string[],
   }>()
 
+  const emit = defineEmits(['onFinished'])
+  const finished = ref<boolean>(false)
+
   interface Robot {
     position: Position2d
     velocity: Position2d
   }
-
-  const emit = defineEmits(['onFinished'])
-  const finished = ref<boolean>(false)
 
   const width = 101
   const height = 103
