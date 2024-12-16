@@ -30,10 +30,6 @@
   interface RotMap {
     [key: string]: string[]
   }
-  interface Result {
-    pOne: number
-    pTwo: number
-  }
 
   const rots: RotMap = {
     '>': ['^', 'v'],
