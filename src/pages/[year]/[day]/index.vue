@@ -46,7 +46,7 @@
               <v-divider />
 
               <v-card-text>
-                <div v-html="markdownRenderer.render(markdownSource[1])" />
+                <div class="markdown" v-html="markdownRenderer.render(markdownSource[1])" />
               </v-card-text>
             </div>
           </v-expand-transition>
