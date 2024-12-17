@@ -31,6 +31,7 @@
     [key: string]: string[]
   }
 
+  // Valid rotations based on current facing
   const rots: RotMap = {
     '>': ['^', 'v'],
     '<': ['^', 'v'],
@@ -38,16 +39,21 @@
     v: ['<', '>'],
   }
 
+  // Directional change based on current facing
   const dirs: DirMap = {
     '>': [1, 0],
     '<': [-1, 0],
     '^': [0, -1],
     v: [0, 1],
   }
+  // Start and end positions
   const start: Position2d = { x: 0, y: 0 }
   const end: Position2d = { x: 0, y: 0 }
+  // Overall grid
   let grid: string[][]
+  // Best path for drawing purposes
   let bestPath: State[]
+  // Points on path for drawing purposes
   const onPath: Set<string> = new Set()
 
   const dijkstra = (): number => {
@@ -70,13 +76,17 @@
 
       if (current.position.x === end.x && current.position.y === end.y) {
         if (totalMinCost === 0) {
+          // First time reaching the goal, remember costs
           totalMinCost = current.cost
+          // Add all positions on the path to the set
           current.path?.forEach(p => onPath.add(`${p.position.x}|${p.position.y}`))
+          // Remember the best path
+          bestPath = current.path || []
         } else if (current.cost === totalMinCost) {
+          // Another time reaching the goal with same costs, add positions on the path to set
           current.path?.forEach(p => onPath.add(`${p.position.x}|${p.position.y}`))
         }
-        // Target found
-        bestPath = current.path || []
+
         continue
       }
 
@@ -84,18 +94,20 @@
       const next = { x: current.position.x + nextDir[0], y: current.position.y + nextDir[1] }
 
       if (next.x < 0 || next.y < 0 || next.x >= grid[0].length || next.y >= grid.length) {
+        // If next is out of bounds, ignore
         continue
       }
 
       const options: State[] = []
       if (grid[next.y][next.x] === '.') {
+        // Go straight
         const path = current.path?.concat() || []
         path.push({ position: next, cost: current.cost + 1, facing: current.facing })
         options.push({ position: next, facing: current.facing, cost: current.cost + 1, path })
       }
 
+      // Check possible rotations
       const rotations = rots[current.facing || '>']
-
       rotations.forEach(r => {
         const path = current.path?.concat() || []
         path.push({ position: current.position, cost: current.cost + 1000, facing: r })
@@ -103,14 +115,18 @@
       })
 
       options.forEach(n => {
+        // Check previous costs
         const prevCost = minCost[`${n.position.x}|${n.position.y}|${n.facing}`]
 
+        // Keep going as long as we're cheaper than any possibly already found solution (for part 2)
         if (totalMinCost === 0 || n.cost <= totalMinCost) {
           if (prevCost === undefined || prevCost === null) {
+            // Remember newly discovered locations
             queue.enqueue(n)
             minCost[`${n.position.x}|${n.position.y}|${n.facing}`] = n.cost
           } else {
             if (n.cost <= prevCost) {
+              // Enqueue if not more expensive
               queue.enqueue(n)
               minCost[`${n.position.x}|${n.position.y}|${n.facing}`] = n.cost
             }
@@ -124,6 +140,7 @@
 
   const run = () => {
     if (props.input) {
+      // Parse the grid
       grid = props.input.map((s, y) => {
         const split = s.split('')
         split.forEach((c, x) => {

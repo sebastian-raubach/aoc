@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { createColorGradient, createMultiColorGradient, VIRIDIS } from '@/plugins/color'
+  import { createMultiColorGradient, VIRIDIS } from '@/plugins/color'
   import { State } from '@/components/2024/D16.vue'
 
   const props = defineProps<{
@@ -43,17 +43,14 @@
     }
 
     const fg = createMultiColorGradient(VIRIDIS, props.path[props.path.length - 1].cost + 1)
-    const bg = createColorGradient('#ced6e0', '#747d8c', props.onPath.size + 1)
 
     props.path.forEach(s => {
       ctx.fillStyle = fg[s.cost]
       ctx.fillRect(s.position.x * factor, s.position.y * factor, factor, factor)
     })
 
-    // ctx.fillStyle = '#ced6e0'
-    let counter = 0
+    ctx.fillStyle = '#57606f'
     props.onPath.forEach(o => {
-      ctx.fillStyle = bg[counter++]
       const [x, y] = o.split('|').map(Number)
       ctx.beginPath()
       ctx.arc(x * factor + factor / 2, y * factor + factor / 2, factor / 4, 0, 2 * Math.PI)
