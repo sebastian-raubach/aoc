@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { mod } from '@/plugins/math';
+  import { mod } from '@/plugins/math'
 
   const props = defineProps<{
     input?: string[],

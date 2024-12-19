@@ -29,7 +29,8 @@ const solvedDays: Map<number, Day[]> = new Map([
     { title: 'Warehouse Woes', partOne: true, partTwo: true, isVisual: true },
     { title: 'Reindeer Maze', partOne: true, partTwo: true, isVisual: true },
     { title: 'Chronospatial Computer', partOne: true, partTwo: true, isVisual: false },
-    { title: 'RAM Run', partOne: true, partTwo: true, isVisual: true }, 
+    { title: 'RAM Run', partOne: true, partTwo: true, isVisual: true },
+    { title: 'Linen Layout', partOne: true, partTwo: true, isVisual: false },
   ]],
   [2023, [
     { title: 'Trebuchet?!', partOne: true, partTwo: true, isVisual: false },
