@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts" setup>
+  import memoize from 'micro-memoize'
+
   const props = defineProps<{
     input?: string[],
   }>()
@@ -10,39 +12,31 @@
   const emit = defineEmits(['onFinished'])
 
   let towels: string[] = []
-  const pOneCache: Map<string, boolean> = new Map()
-  const pTwoCache: Map<string, number> = new Map()
+
+  let memoizeMatches: Function
+  let memoizeEnumerate: Function
 
   const matches = (design: string): boolean => {
-    const cache = pOneCache.get(design)
-    if (design === '' || cache) {
+    if (design === '') {
       return true
-    } else if (cache === false) {
-      return false
     }
 
     for (let i = 0; i < towels.length; i++) {
       if (design.startsWith(towels[i])) {
         const part = design.slice(towels[i].length)
-        const valid = pOneCache.get(part) || matches(part)
-        pOneCache.set(part, valid)
+        const valid = memoizeMatches(part)
         if (valid) {
-          pOneCache.set(design, true)
           return true
         }
       }
     }
 
-    pOneCache.set(design, false)
     return false
   }
 
   const enumerate = (design: string): number => {
-    const cache = pTwoCache.get(design)
     if (design === '') {
       return 1
-    } else if (cache) {
-      return cache
     }
 
     let total = 0
@@ -50,15 +44,16 @@
       if (design.startsWith(towels[i])) {
         const part = design.slice(towels[i].length)
 
-        const count = pTwoCache.get(part) || enumerate(part)
-        pTwoCache.set(part, count)
+        const count = memoizeEnumerate(part)
         total += count
       }
     }
 
-    pTwoCache.set(design, total)
     return total
   }
+
+  memoizeMatches = memoize(matches, { maxSize: Number.MAX_VALUE })
+  memoizeEnumerate = memoize(enumerate, { maxSize: Number.MAX_VALUE })
 
   const run = () => {
     if (props.input) {
@@ -68,7 +63,7 @@
       let pOne = 0
       let pTwo = 0
       designs.filter(d => {
-        if (matches(d)) {
+        if (memoizeMatches(d)) {
           // Part 1 count valid designs
           pOne++
           return true
@@ -76,7 +71,7 @@
         return false
       }).forEach(d => {
         // Part 2 for each valid design, get enumeration
-        pTwo += enumerate(d)
+        pTwo += memoizeEnumerate(d)
       })
 
       emit('onFinished', pOne, pTwo)
