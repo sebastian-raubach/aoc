@@ -75,24 +75,22 @@
   }
 
   const findShortcutsTwoManhattan = (minDelta: number, maxLength: number) => {
-    const pathStrings = path.map(p => `${p.x}|${p.y}`)
-    const pathSet = new Set(pathStrings)
+    const pathDist: Map<string, number> = new Map()
+    path.forEach((p, i) => pathDist.set(`${p.x}|${p.y}`, i))
 
     path.forEach((p, i) => {
       for (let y = -maxLength; y <= maxLength; y++) {
         for (let x = -maxLength + Math.abs(y); x <= maxLength - Math.abs(y); x++) {
           const key = `${p.x + x}|${p.y + y}`
-          if (pathSet.has(key)) {
-            const index = pathStrings.indexOf(key)
-            // This is the distance we have to move
-            const manhattan = Math.abs(x) + Math.abs(y)
-            // This is how much we're saving
-            const savings = index - i - manhattan
+          const index = pathDist.get(key) || -1
+          // This is the distance we have to move
+          const manhattan = Math.abs(x) + Math.abs(y)
+          // This is how much we're saving
+          const savings = index - i - manhattan
 
-            if (manhattan <= maxLength && index > i) {
-              if (savings >= minDelta) {
-                shortcutsTwo++
-              }
+          if (manhattan <= maxLength && index > i) {
+            if (savings >= minDelta) {
+              shortcutsTwo++
             }
           }
         }

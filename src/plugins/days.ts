@@ -31,7 +31,7 @@ const solvedDays: Map<number, Day[]> = new Map([
     { title: 'Chronospatial Computer', partOne: true, partTwo: true, isVisual: false },
     { title: 'RAM Run', partOne: true, partTwo: true, isVisual: true },
     { title: 'Linen Layout', partOne: true, partTwo: true, isVisual: false },
-    { title: 'Race Condition', partOne: true, partTwo: true, isVisual: true, warnings: [WARNING_LONG_RUNTIME] },
+    { title: 'Race Condition', partOne: true, partTwo: true, isVisual: true },
   ]],
   [2023, [
     { title: 'Trebuchet?!', partOne: true, partTwo: true, isVisual: false },
