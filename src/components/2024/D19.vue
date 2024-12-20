@@ -13,8 +13,8 @@
 
   let towels: string[] = []
 
-  let memoizeMatches: Function
-  let memoizeEnumerate: Function
+  let memMatch: Function
+  let memEnumerate: Function
 
   const matches = (design: string): boolean => {
     if (design === '') {
@@ -24,7 +24,7 @@
     for (let i = 0; i < towels.length; i++) {
       if (design.startsWith(towels[i])) {
         const part = design.slice(towels[i].length)
-        const valid = memoizeMatches(part)
+        const valid = memMatch(part)
         if (valid) {
           return true
         }
@@ -44,7 +44,7 @@
       if (design.startsWith(towels[i])) {
         const part = design.slice(towels[i].length)
 
-        const count = memoizeEnumerate(part)
+        const count = memEnumerate(part)
         total += count
       }
     }
@@ -52,8 +52,9 @@
     return total
   }
 
-  memoizeMatches = memoize(matches, { maxSize: Number.MAX_VALUE })
-  memoizeEnumerate = memoize(enumerate, { maxSize: Number.MAX_VALUE })
+  // Memoize function calls
+  memMatch = memoize(matches, { maxSize: Number.MAX_VALUE })
+  memEnumerate = memoize(enumerate, { maxSize: Number.MAX_VALUE })
 
   const run = () => {
     if (props.input) {
@@ -62,17 +63,13 @@
 
       let pOne = 0
       let pTwo = 0
-      designs.filter(d => {
-        if (memoizeMatches(d)) {
-          // Part 1 count valid designs
+      designs.filter(d => memMatch(d))
+        .forEach(d => {
+          // Part 1 are all the ones that match
           pOne++
-          return true
-        }
-        return false
-      }).forEach(d => {
-        // Part 2 for each valid design, get enumeration
-        pTwo += memoizeEnumerate(d)
-      })
+          // Part 2 for each valid design, get enumeration
+          pTwo += memEnumerate(d)
+        })
 
       emit('onFinished', pOne, pTwo)
     }

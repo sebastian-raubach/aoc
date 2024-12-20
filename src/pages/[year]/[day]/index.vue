@@ -58,6 +58,10 @@
       <v-textarea v-model="input" class="task-input" label="Task input" />
 
       <v-btn color="primary" :disabled="!componentExists" type="submit"><v-icon><IBiPlayFill /></v-icon> Run</v-btn>
+
+      <div v-if="actualDay.warnings && actualDay.warnings.length > 0" class="my-3">
+        <p v-for="(warning, i) in actualDay.warnings" :key="`warning-${i}`" class="text-warning">{{ warning }}</p>
+      </div>
     </v-form>
 
     <v-row>
