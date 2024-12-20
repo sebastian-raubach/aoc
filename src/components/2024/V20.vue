@@ -48,9 +48,24 @@
     })
 
     props.sOne.forEach(s => {
+      const x1 = s.path[0].x + 0.5
+      const x2 = s.path[1].x + 0.5
+      const y1 = s.path[0].y + 0.5
+      const y2 = s.path[1].y + 0.5
       ctx.beginPath()
-      ctx.moveTo((s.path[0].x + 0.5) * factor, (s.path[0].y + 0.5) * factor)
-      ctx.lineTo((s.path[1].x + 0.5) * factor, (s.path[1].y + 0.5) * factor)
+      ctx.moveTo(x1 * factor, y1 * factor)
+      ctx.lineTo(x2 * factor, y2 * factor)
+      const deltaX = Math.sign(s.path[0].x - s.path[1].x)
+      const deltaY = Math.sign(s.path[0].y - s.path[1].y)
+      if (deltaY === 0) {
+        ctx.lineTo((x2 + 0.5 * deltaX) * factor, (y2 - 0.5) * factor)
+        ctx.moveTo(x2 * factor, y2 * factor)
+        ctx.lineTo((x2 + 0.5 * deltaX) * factor, (y2 + 0.5) * factor)
+      } else if (deltaX === 0) {
+        ctx.lineTo((x2 - 0.5) * factor, (y2 + 0.5 * deltaY) * factor)
+        ctx.moveTo(x2 * factor, y2 * factor)
+        ctx.lineTo((x2 + 0.5) * factor, (y2 + 0.5 * deltaY) * factor)
+      }
       ctx.stroke()
     })
   }
