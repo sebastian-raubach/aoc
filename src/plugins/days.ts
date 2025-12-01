@@ -11,6 +11,9 @@ export interface Day {
 }
 
 const solvedDays: Map<number, Day[]> = new Map([
+  [2025, [
+    { title: 'Secret Entrance', partOne: true, partTwo: true, isVisual: false },
+  ]],
   [2024, [
     { title: 'Historian Hysteria', partOne: true, partTwo: true, isVisual: false },
     { title: 'Red-Nosed Reports', partOne: true, partTwo: true, isVisual: true },
@@ -32,6 +35,11 @@ const solvedDays: Map<number, Day[]> = new Map([
     { title: 'RAM Run', partOne: true, partTwo: true, isVisual: true },
     { title: 'Linen Layout', partOne: true, partTwo: true, isVisual: false },
     { title: 'Race Condition', partOne: true, partTwo: true, isVisual: true },
+    { title: 'Keypad Conundrum', partOne: false, partTwo: false, isVisual: false },
+    { title: 'Monkey Market', partOne: true, partTwo: false, isVisual: false },
+    { title: 'LAN Party', partOne: true, partTwo: true, isVisual: false },
+    { title: 'Crossed Wires', partOne: true, partTwo: false, isVisual: false },
+    { title: 'Code Chronicle', partOne: true, partTwo: false, isVisual: false },
   ]],
   [2023, [
     { title: 'Trebuchet?!', partOne: true, partTwo: true, isVisual: false },

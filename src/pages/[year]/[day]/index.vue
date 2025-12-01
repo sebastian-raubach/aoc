@@ -93,6 +93,14 @@
         @on-finished="handleResult"
       />
     </template>
+    <v-card
+      v-else-if="!currentDay.partOne && !currentDay.partTwo"
+      title="Solution not found"
+    >
+      <template #subtitle>
+        <span class="text-wrap">There is no solution for this task.</span>
+      </template>
+    </v-card>
     <MissingSolutionComponent v-else :day="day" :year="year" />
   </v-container>
 </template>
