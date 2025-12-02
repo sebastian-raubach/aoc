@@ -1,6 +1,6 @@
 {
   "name": "advent-of-code-v3",
-  "version": "0.0.0",
+  "version": "3.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build && node -e \"require('fs').copyFileSync('.nojekyll','dist/.nojekyll')\"",
