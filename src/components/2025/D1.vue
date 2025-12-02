@@ -15,22 +15,29 @@
     if (props.input) {
       let pOne = 0
       let pTwo = 0
-      const numbers = props.input.map((s: string) => {
-        const delta = s.slice(0, 1) === 'L' ? -1 : +1
+      const deltas = props.input.map((s: string) => {
+        // Determine sign based on L or R
+        const sign = s.slice(0, 1) === 'L' ? -1 : +1
+        // Get the number from the input
         const number = +(s.slice(1, s.length))
 
-        return delta * number
+        // Calculate the total delta
+        return sign * number
       })
 
-      numbers.reduce((a, b) => {
+      deltas.reduce((a, b) => {
+        // Calculate new value
         const result = a + b
 
+        // Modulo it by 100 to get within range
         const modulated = mod(result, 100)
-        const count = Math.floor(Math.abs(result) / 100) + (result <= 0 && a !== 0 ? 1 : 0)
-
         if (modulated === 0) {
+          // If the remainder is 0, we're currently pointing at 0
           pOne++
         }
+
+        // For part 2, calculate the number of passed by 0. Add 1 if rotating L and passing 0.
+        const count = Math.floor(Math.abs(result) / 100) + (result <= 0 && a !== 0 ? 1 : 0)
 
         pTwo += count
 

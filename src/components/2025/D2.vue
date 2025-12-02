@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { mod } from '@/plugins/math';
+  import { mod } from '@/plugins/math'
 
   const props = defineProps<{
     input?: string[],
@@ -19,7 +19,9 @@ import { mod } from '@/plugins/math';
   const run = () => {
     if (props.input) {
       const ranges: Range[] = props.input.map((s: string) => {
+        // Split the input into individual ranges
         return s.split(',').map(r => {
+          // Then split each range into start and end
           const parts = r.split('-')
           return {
             start: parts[0],
@@ -38,6 +40,7 @@ import { mod } from '@/plugins/math';
         for (let n = start; n <= end; n++) {
           const nn = `${n}`
 
+          // Check number has an even length and check if the first half equals the second half
           if (mod(nn.length, 2) === 0 && nn.slice(0, nn.length / 2) === nn.slice(-(nn.length / 2))) {
             pOne += n
           }
@@ -46,6 +49,7 @@ import { mod } from '@/plugins/math';
             // For each valid length up to at most half the string length
             outer: for (let l = 1; l <= Math.ceil(nn.length / 2); l++) {
               if (mod(nn.length, l) !== 0) {
+                // Total length isn't cleanly divisible by this sub-length -> cannot be multiples
                 continue
               }
 
@@ -61,6 +65,7 @@ import { mod } from '@/plugins/math';
                 }
               }
 
+              // We get here IFF it's invalid
               pTwo += n
               break
             }
