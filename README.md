@@ -17,6 +17,7 @@ I've been using the following technologies:
 - [Plotly.js](https://plotly.com/javascript/) for some charts.
 - [Vuetify](https://vuetifyjs.com/) as the UI library.
 - [TypeScript](https://www.typescriptlang.org/) for type safety.
+- [Vite](https://vite.dev/) as the build tool.
 - [GitHub Actions](https://github.com/actions) for CI/CD.
 - [GitHub Pages](https://pages.github.com/) for hosting.
 

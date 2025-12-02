@@ -94,7 +94,7 @@
       />
     </template>
     <v-card
-      v-else-if="!currentDay.partOne && !currentDay.partTwo"
+      v-else-if="!actualDay.partOne && !actualDay.partTwo"
       title="Solution not found"
     >
       <template #subtitle>
