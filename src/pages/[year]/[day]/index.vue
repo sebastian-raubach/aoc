@@ -1,10 +1,10 @@
 <template>
   <v-container v-if="actualDay">
-    <v-btn class="mb-3" :to="`../${year}`" variant="tonal"><v-icon><IBiChevronDoubleLeft /></v-icon> Back</v-btn>
+    <v-btn class="mb-3" :to="`../${year}`" variant="tonal"><template #prepend><v-icon><IBiChevronDoubleLeft /></v-icon></template> Back</v-btn>
 
     <div class="d-flex justify-space-between">
       <h1 class="text-h4">Year {{ year }} - Day {{ day }}</h1>
-      <v-btn v-if="githubUrl" :href="githubUrl" target="_blank"><v-icon><IBiGithub /></v-icon> Code on GitHub</v-btn>
+      <v-btn v-if="githubUrl" :href="githubUrl" target="_blank"><template #prepend><v-icon><IBiGithub /></v-icon></template> Code on GitHub</v-btn>
     </div>
     <h2 class="text-secondary">{{ actualDay.title }}</h2>
     <v-divider class="my-4" />
@@ -57,7 +57,7 @@
     <v-form class="mb-5" @submit.prevent="handleInput">
       <v-textarea v-model="input" class="task-input" label="Task input" />
 
-      <v-btn color="primary" :disabled="!componentExists" type="submit"><v-icon><IBiPlayFill /></v-icon> Run</v-btn>
+      <v-btn color="primary" :disabled="!componentExists" type="submit"><template #prepend><v-icon><IBiPlayFill /></v-icon></template> Run</v-btn>
 
       <div v-if="actualDay.warnings && actualDay.warnings.length > 0" class="my-3">
         <p v-for="(warning, i) in actualDay.warnings" :key="`warning-${i}`" class="text-warning">{{ warning }}</p>

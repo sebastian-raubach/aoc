@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-btn class="mb-3" to="/" variant="tonal"><v-icon><IBiChevronDoubleLeft /></v-icon> Back</v-btn>
+    <v-btn class="mb-3" to="/" variant="tonal"><template #prepend><v-icon><IBiChevronDoubleLeft /></v-icon></template> Back</v-btn>
 
     <h1 class="text-h4">Year {{ year }}</h1>
     <v-divider class="my-4" />
