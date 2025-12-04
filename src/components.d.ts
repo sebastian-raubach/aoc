@@ -55,6 +55,7 @@ declare module 'vue' {
     V20: typeof import('./components/2024/V20.vue')['default']
     V25: typeof import('./components/2024/V25.vue')['default']
     V3: typeof import('./components/2024/V3.vue')['default']
+    V4: typeof import('./components/2025/V4.vue')['default']
     V6: typeof import('./components/2024/V6.vue')['default']
     V8: typeof import('./components/2024/V8.vue')['default']
     V9: typeof import('./components/2024/V9.vue')['default']
