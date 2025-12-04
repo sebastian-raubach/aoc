@@ -1,0 +1,1 @@
+const s=(n,r)=>{const e=new Set(n);return r.forEach(t=>{e.delete(t)}),e},c=(n,r)=>{const e=new Set;return r.forEach(t=>{n.has(t)&&e.add(t)}),e},o=(n,r)=>{const e=new Set(n);return r.forEach(t=>e.add(t)),e};export{s as d,c as i,o as u};
