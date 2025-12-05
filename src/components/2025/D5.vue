@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { uuidv4 } from '@/plugins/id';
+  import { getId } from '@/plugins/id'
 
   const props = defineProps<{
     input?: string[],
@@ -37,7 +37,7 @@ import { uuidv4 } from '@/plugins/id';
               start,
               end,
               // Assign a unique ID. This makes identifying ranges easier in the end
-              id: uuidv4(),
+              id: getId(),
             })
           }
         }
