@@ -58,6 +58,10 @@ const manhattan = (a, b) => {
   return Math.abs(a.x - b.x) + Math.abs(a.y - b.y)
 }
 
+const euclidean = (a, b) => {
+  return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))
+}
+
 const enumerateBase = (number, base) => {
   const states = []
 
@@ -80,5 +84,6 @@ export {
   permutate,
   lcm,
   manhattan,
+  euclidean,
   enumerateBase,
 }
