@@ -188,6 +188,7 @@
       try {
         // @ts-ignore
         Plotly.restyle(chartDiv.value, {
+          // @ts-ignore
           'colorbar.tickfont.color': themeColor,
         }, [0])
         const layoutUpdate = {
