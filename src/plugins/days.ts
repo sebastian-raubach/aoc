@@ -22,6 +22,7 @@ const solvedDays: Map<number, Day[]> = new Map([
     { title: 'Playground', partOne: true, partTwo: true, isVisual: false },
     { title: 'Movie Theater', partOne: true, partTwo: true, isVisual: true },
     { title: 'Factory', partOne: true, partTwo: true, isVisual: true },
+    { title: 'Reactor', partOne: true, partTwo: true, isVisual: false },
   ]],
   [2024, [
     { title: 'Historian Hysteria', partOne: true, partTwo: true, isVisual: false },
