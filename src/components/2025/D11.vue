@@ -58,10 +58,13 @@
       })
       traitFile.value = heliumTraits
 
-      // For part two we have two options svr->fft->dac->out or svr->dac->fft->out, so for each, calculate the number of sub-paths,
-      // then multiply them together. At the end sum up both option counts.
-      pTwo = countPaths(devices, 'svr', 'fft', new Map()) * countPaths(devices, 'fft', 'dac', new Map()) * countPaths(devices, 'dac', 'out', new Map()) +
-        countPaths(devices, 'svr', 'dac', new Map()) * countPaths(devices, 'dac', 'fft', new Map()) * countPaths(devices, 'fft', 'out', new Map())
+      // For part two we have two options svr->fft->dac->out or svr->dac->fft->out. Since this is a DAG, you cannot have a path
+      // from fft->dac AND dac-fft in the same graph. Hence it's either or. Check which one, then calculate the number of paths.
+      if (countPaths(devices, 'fft', 'dac', new Map()) > 0) {
+        pTwo = countPaths(devices, 'svr', 'fft', new Map()) * countPaths(devices, 'fft', 'dac', new Map()) * countPaths(devices, 'dac', 'out', new Map())
+      } else {
+        pTwo = countPaths(devices, 'svr', 'dac', new Map()) * countPaths(devices, 'dac', 'fft', new Map()) * countPaths(devices, 'fft', 'out', new Map())
+      }
 
       emit('onFinished', pOne, pTwo)
     }
