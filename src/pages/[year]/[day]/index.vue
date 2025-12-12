@@ -137,9 +137,9 @@
 
   const actualDay: ComputedRef<Day | undefined> = computed(() => {
     if (year.value && day.value) {
-      const days = solvedDays.get(+year.value)
-      if (days) {
-        return days[(+day.value) - 1]
+      const yearConfig = solvedDays.get(+year.value)
+      if (yearConfig) {
+        return yearConfig.days[(+day.value) - 1]
       } else {
         return undefined
       }

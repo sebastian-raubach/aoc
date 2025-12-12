@@ -69,7 +69,7 @@
 
   const daysForYear: ComputedRef<Day[] | undefined> = computed(() => {
     if (year.value) {
-      return solvedDays.get(+year.value)
+      return solvedDays.get(+year.value)?.days
     } else {
       return undefined
     }

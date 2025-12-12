@@ -15,18 +15,18 @@
 
     <v-row>
       <v-col
-        v-for="[year, days] in solvedDays"
+        v-for="[year, yearConfig] in solvedDays"
         :key="`year-${year}`"
-        :cols=12
-        :md=3
-        :sm=6
+        :cols="12"
+        :md="3"
+        :sm="6"
       >
         <v-card class="text-center" no variant="tonal">
           <v-card-title class="text-h3 my-0 py-0">{{ year }}</v-card-title>
-          <v-progress-linear class="christmas-gradient" :max="50" :model-value="days.reduce((prev: number, day: Day) => prev + (day.stars || 0), 0)" stream />
+          <v-progress-linear class="christmas-gradient" :max="yearConfig.totalStars" :model-value="yearConfig.days.reduce((prev: number, day: Day) => prev + (day.stars || 0), 0)" stream />
           <v-card-actions class="d-flex justify-space-between">
             <v-btn :to="`${year}`">View</v-btn>
-            <v-btn disabled>{{ days.reduce((prev: number, day: Day) => prev + (day.stars || 0), 0) }}/50</v-btn>
+            <v-btn disabled>{{ yearConfig.days.reduce((prev: number, day: Day) => prev + (day.stars || 0), 0) }}/{{ yearConfig.totalStars }}</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -39,10 +39,10 @@
 </template>
 
 <script lang="ts" setup>
-  import { Day, solvedDays } from '@/plugins/days'
+  import { Day, solvedDays, Year } from '@/plugins/days'
 
-  solvedDays.forEach((days: Day[], year: number) => {
-    days.forEach((d: Day) => {
+  solvedDays.forEach((yearConfig: Year, year: number) => {
+    yearConfig.days.forEach((d: Day) => {
       d.stars = (d.partOne ? 1 : 0) + (d.partTwo ? 1 : 0)
     })
   })

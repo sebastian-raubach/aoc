@@ -10,6 +10,7 @@
   "dependencies": {
     "@datastructures-js/priority-queue": "^6.3.1",
     "@mdi/font": "7.4.47",
+    "@vueuse/core": "^14.1.0",
     "core-js": "^3.37.1",
     "markdown-it": "^14.1.0",
     "micro-memoize": "^4.1.2",
